@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<title>Social-Media Like Button</title>
+		<script src="js/angular.min.js"></script>
+		<style>
+			.likes{
+			   background: #F65A5B ;
+ 				color: #fff;
+ 				cursor: pointer;
+ 				display: inline-block;
+				font-size: 15px;
+				line-height: 40px;
+				min-width: 40px;
+				height: 40px;
+				border-radius: 50%;
+				margin: 0 -30px 0 40px;
+				text-align: center;
+				font-weight: 200;
+				box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+				transition: background 500ms;
+			}
+
+			.likes:hover{
+				color: #F65A5B ;
+				background: rgba(246, 90, 91, 0.25);
+				transition: background 500ms;
+			}
+		</style>	
+	</head>
+
+	<body>
+		
+		<p>Click the circle</p>
+		<div ng-app='likeApp' ng-Controller='likeController'>
+		<numbLikes class='likes' ng-click='like()'>+{{ likes }}</numbLikes>
+									
+		<script>
+			angular.module('likeApp', [])
+			.controller('likeController', ['$scope', function($scope){
+				$scope.likes = 0;
+				$scope.like = function(){
+					$scope.likes += 1;
+				}
+			}])
+			.directive('numLikes', function(){
+				return{
+					restrict: 'E',
+					template: '+1'
+				};
+			});
+		</script>
+	</body>						
+</html>
